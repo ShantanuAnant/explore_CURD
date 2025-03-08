@@ -1,6 +1,0 @@
-django # pip install django
-djangorestframework # pip install djangorestframework
-djangorestframework-simplejwt # pip install djangorestframework-simplejwt
-django-cors-headers
-SQLAlchemy
-psycopg2

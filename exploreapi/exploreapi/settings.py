@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8gz^51=haq)#yh_&t^v8$zp%+m&g=em^usc4t-#yyqu7kb4c&4'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'your_django_secret_key_here_default_for_dev')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -79,12 +80,12 @@ WSGI_APPLICATION = 'exploreapi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'explore',
-        'USER': 'postgres',
-        'PASSWORD': 'Mongapost$2341',
-        'HOST': 'localhost',  # Set to your database host
-        'PORT': '5432',       # Default port for PostgreSQL
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',  # Or 'django.db.backends.postgresql' for newer Django versions
+        'NAME': os.environ.get('DATABASE_NAME', 'your_default_db_name'), # Default if env var is not set (for local dev outside Docker)
+        'USER': os.environ.get('DATABASE_USER', 'your_default_user'),   # Default if env var is not set
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD', 'your_default_password'), # Default if env var is not set
+        'HOST': os.environ.get('DATABASE_HOST', 'localhost'),  # Default to 'localhost' if DATABASE_HOST is not set (for local dev outside Docker)
+        'PORT': os.environ.get('DATABASE_PORT', '5432'),      # Default to '5432' if DATABASE_PORT is not set
     }
 }
 
@@ -131,13 +132,13 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
+    # 'DEFAULT_AUTHENTICATION_CLASSES': (
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
+    # ),
 }
 
 CORS_ALLOWED_ORIGINS = [
-    # "https://example.com",
+    "https://example.com",
     # "https://sub.example.com",
     "http://localhost:8080",
     "http://127.0.0.1:9000",
