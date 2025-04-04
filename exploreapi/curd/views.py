@@ -17,3 +17,4 @@ class PersonProfileRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIVi
     """
     queryset = PersonProfile.objects.all()
     serializer_class = PersonProfileSerializer
+    
