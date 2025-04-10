@@ -26,8 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'your_django_secret_key_here_default_f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ["*"]
-
+ALLOWED_HOSTS = [".vercel.app"]
 
 # Application definition
 
@@ -80,12 +79,12 @@ WSGI_APPLICATION = 'exploreapi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',  # Or 'django.db.backends.postgresql' for newer Django versions
-        'NAME': os.environ.get('DATABASE_NAME', 'your_default_db_name'), # Default if env var is not set (for local dev outside Docker)
-        'USER': os.environ.get('DATABASE_USER', 'your_default_user'),   # Default if env var is not set
-        'PASSWORD': os.environ.get('DATABASE_PASSWORD', 'your_default_password'), # Default if env var is not set
-        'HOST': os.environ.get('DATABASE_HOST', 'localhost'),  # Default to 'localhost' if DATABASE_HOST is not set (for local dev outside Docker)
-        'PORT': os.environ.get('DATABASE_PORT', '5432'),      # Default to '5432' if DATABASE_PORT is not set
+        'ENGINE': 'django.db.backends.postgresql',  # Using PostgreSQL as the database engine
+        'NAME': 'explore',  # Default database name
+        'USER': 'postgres',  # Default database user
+        'PASSWORD': 'Mongapost$2341',  # Default password
+        'HOST': 'localhost',  # Default host
+        'PORT': '5432',  # Default port for PostgreSQL
     }
 }
 
@@ -138,8 +137,5 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "https://example.com",
-    # "https://sub.example.com",
-    "http://localhost:8080",
-    "http://127.0.0.1:9000",
+    ".vercel.app",
 ]
