@@ -32,7 +32,7 @@ ALLOWED_HOSTS = [".vercel.app"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'django.contrib.auth',
+    'django.contrib.auth',  
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'explore',  # Default database name
         'USER': 'postgres',  # Default database user
         'PASSWORD': 'Mongapost$2341',  # Default password
-        'HOST': 'localhost',  # Default host
+        'HOST': 'db.ceniscokwztebvedxecq.supabase.co',  # Default host
         'PORT': '5432',  # Default port for PostgreSQL
     }
 }
@@ -136,6 +136,7 @@ REST_FRAMEWORK = {
     # ),
 }
 
+
 CORS_ALLOWED_ORIGINS = [
-    ".vercel.app",
+    "https://localhost.com"
 ]
